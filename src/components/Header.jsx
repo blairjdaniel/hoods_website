@@ -40,7 +40,7 @@ const Header = () => {
                     }}
                 >
                     <source 
-                        src={isMobile ? `${gcsBaseUrl}/rogue_index_mobile.mp4` : `${gcsBaseUrl}/rogue_index.mp4`} 
+                        src={isMobile ? `${gcsBaseUrl}/rogue_index_long_mobile.mp4` : `${gcsBaseUrl}/rogue_index.mp4`} 
                         type="video/mp4" 
                     />
                     Your browser does not support the video tag.
@@ -63,7 +63,7 @@ const Header = () => {
                     }}
                 >
                     <source 
-                        src={isMobile ? `${gcsBaseUrl}/rogue_index_long_mobile.mp4` : `${gcsBaseUrl}/rogue_index_long.mp4`} 
+                        src={isMobile ? `${gcsBaseUrl}/rogue_index_mobile.mp4` : `${gcsBaseUrl}/rogue_index_long.mp4`} 
                         type="video/mp4" 
                     />
                     Your browser does not support the video tag.
