@@ -10,7 +10,7 @@ const Header = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowOpening(false);
-        }, 4000);
+        }, 4300);
         return () => clearTimeout(timer);
     }, []);
 
@@ -19,6 +19,7 @@ const Header = () => {
             {!introEnded && (
                 <video
                     ref={introVideoRef}
+                    preload='auto'
                     autoPlay
                     muted
                     playsInline
