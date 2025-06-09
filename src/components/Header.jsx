@@ -1,25 +1,30 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const gcsBaseUrl = "https://storage.googleapis.com/hoods-bucket"; // Replace with your bucket's URL
+const gcsBaseUrl = "https://storage.googleapis.com/hoods-bucket";
 
 const Header = () => {
     const [showOpening, setShowOpening] = useState(true);
     const [introEnded, setIntroEnded] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     const introVideoRef = useRef(null);
+
+    useEffect(() => {
+        setIsMobile(window.innerWidth < 768);
+    }, []);
 
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowOpening(false);
-        }, 4300);
+        }, isMobile ? 5000 : 4300); // Adjust duration if needed
         return () => clearTimeout(timer);
-    }, []);
+    }, [isMobile]);
 
     return (
         <header style={{ position: 'relative', height: '100vh', overflow: 'hidden' }}>
             {!introEnded && (
                 <video
                     ref={introVideoRef}
-                    preload='auto'
+                    preload="auto"
                     autoPlay
                     muted
                     playsInline
@@ -34,7 +39,10 @@ const Header = () => {
                         zIndex: 0,
                     }}
                 >
-                    <source src={`${gcsBaseUrl}/rogue_index.mp4`} type="video/mp4" />
+                    <source 
+                        src={isMobile ? `${gcsBaseUrl}/rogue_index_mobile.mp4` : `${gcsBaseUrl}/rogue_index.mp4`} 
+                        type="video/mp4" 
+                    />
                     Your browser does not support the video tag.
                 </video>
             )}
@@ -54,7 +62,10 @@ const Header = () => {
                         zIndex: 0,
                     }}
                 >
-                    <source src={`${gcsBaseUrl}/rogue_index_long.mp4`} type="video/mp4" />
+                    <source 
+                        src={isMobile ? `${gcsBaseUrl}/rogue_index_long_mobile.mp4` : `${gcsBaseUrl}/rogue_index_long.mp4`} 
+                        type="video/mp4" 
+                    />
                     Your browser does not support the video tag.
                 </video>
             )}
@@ -71,7 +82,11 @@ const Header = () => {
                     }}
                 >
                     <img
-                        src={`${process.env.PUBLIC_URL}/opening.gif`}
+                        src={
+                            isMobile 
+                                ? `${gcsBaseUrl}/opening_mobile.gif` 
+                                : `${process.env.PUBLIC_URL}/opening.gif`
+                        }
                         alt="Opening Animation"
                         style={{
                             width: '100%',
@@ -98,7 +113,6 @@ const Header = () => {
                     height="74"
                     loading="eager"
                     decoding="async"
-                    // Removed extra classes that might affect layout
                     style={{ color: 'transparent' }}
                 />
             </a>
