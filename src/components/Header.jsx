@@ -84,7 +84,7 @@ const Header = () => {
                     <img
                         src={
                             isMobile 
-                                ? `${gcsBaseUrl}/opening_mobile.gif` 
+                                ? `${gcsBaseUrl}/opening_mobile.mp4` 
                                 : `${process.env.PUBLIC_URL}/opening.gif`
                         }
                         alt="Opening Animation"
