@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+const gcsBaseUrl = "https://storage.googleapis.com/hoods-bucket"; // Replace with your bucket's URL
 
 const Header = () => {
     const [showOpening, setShowOpening] = useState(true);
@@ -32,7 +33,7 @@ const Header = () => {
                         zIndex: 0,
                     }}
                 >
-                    <source src={`${process.env.PUBLIC_URL}/videos/rogue_index.mp4`} type="video/mp4" />
+                    <source src={`${gcsBaseUrl}/rogue_index.mp4`} type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
             )}
@@ -52,7 +53,7 @@ const Header = () => {
                         zIndex: 0,
                     }}
                 >
-                    <source src={`${process.env.PUBLIC_URL}/videos/rogue_index_long.mp4`} type="video/mp4" />
+                    <source src={`${gcsBaseUrl}/rogue_index_long.mp4`} type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
             )}
