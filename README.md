@@ -1,2 +1,2 @@
-# hoods_website
-Repo for Netlify for HoodsDAO website
+# website
+Github Pages
