@@ -2,20 +2,22 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const gcsBaseUrl = "https://storage.googleapis.com/hoods-bucket";
 
+// (Option 1) Set initial state immediately.
 const Header = () => {
+    const [isMobile, setIsMobile] = useState(typeof window !== "undefined" && window.innerWidth < 790);
     const [showOpening, setShowOpening] = useState(true);
     const [introEnded, setIntroEnded] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
     const introVideoRef = useRef(null);
 
+    // (Optionally) add a resize listener if you want responsiveness after mount.
     useEffect(() => {
-        setIsMobile(window.innerWidth < 790);
+        const handleResize = () => setIsMobile(window.innerWidth < 790);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setShowOpening(false);
-        }, isMobile ? 4500 : 4300); // Adjust duration if needed
+        const timer = setTimeout(() => setShowOpening(false), isMobile ? 4500 : 4300);
         return () => clearTimeout(timer);
     }, [isMobile]);
 
@@ -63,6 +65,7 @@ const Header = () => {
                     }}
                 >
                     <source 
+                        // Always loop the desktop long video.
                         src={isMobile ? `${gcsBaseUrl}/rogue_index_mobile_two.mp4` : `${gcsBaseUrl}/rogue_index_long.mp4`} 
                         type="video/mp4" 
                     />
