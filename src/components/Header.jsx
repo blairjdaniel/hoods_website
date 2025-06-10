@@ -9,13 +9,13 @@ const Header = () => {
     const introVideoRef = useRef(null);
 
     useEffect(() => {
-        setIsMobile(window.innerWidth < 768);
+        setIsMobile(window.innerWidth < 790);
     }, []);
 
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowOpening(false);
-        }, isMobile ? 5000 : 4300); // Adjust duration if needed
+        }, isMobile ? 4500 : 4300); // Adjust duration if needed
         return () => clearTimeout(timer);
     }, [isMobile]);
 
