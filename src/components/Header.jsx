@@ -17,7 +17,7 @@ const Header = () => {
     }, []);
 
     useEffect(() => {
-        const timer = setTimeout(() => setShowOpening(false), isMobile ? 4500 : 4300);
+        const timer = setTimeout(() => setShowOpening(false), isMobile ? 4200 : 4200);
         return () => clearTimeout(timer);
     }, [isMobile]);
 
